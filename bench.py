@@ -19,6 +19,7 @@ def make_env(env_id: str):
     if env_id == "go1":
         env = gymnasium.make(
             'Ant-v5',
+            # note: we use mujoco_menagerie commit: 1b3b0c64bfa36df8668d88c531f8e834233ed55a
             xml_file='../mujoco_menagerie/unitree_go1/scene.xml',
             forward_reward_weight=1,
             ctrl_cost_weight=0.05,
@@ -83,4 +84,3 @@ for run in range(args.starting_run, RUNS):
     model.set_logger(configure(eval_path, ["csv"]))
 
     model.learn(total_timesteps=TOTAL_TIME_STEPS, callback=eval_callback)
-
